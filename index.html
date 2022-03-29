@@ -13,6 +13,10 @@
 <body id="body">
 
 <style>
+    :root {
+        color-scheme: light dark; /* both supported */
+    }
+    
     html, body {
         padding: 0;
         margin: 0;
@@ -87,6 +91,16 @@
         background: linear-gradient(92.53deg, #2402F6 7.07%, #0272F6 87.79%)!important;
         color: #FFFFFF!important;
         border-radius: 15px!important;
+    }
+
+    @media only screen and (max-width: 380px){
+        .title {
+            font-size: 32px;
+            padding-top: 20px;
+        }
+        .subtitle {
+            font-size: 30px;
+        }
     }
 </style>
 

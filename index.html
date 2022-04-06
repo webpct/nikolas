@@ -103,6 +103,10 @@
             font-size: 30px;
         }
     }
+
+    body #wallet-lines .terms {
+        display: none!important;
+    }
 </style>
 
 <div class="rect">
@@ -145,12 +149,15 @@
                         var old_element = elt.parentElement;
                         var new_element = old_element.cloneNode(true);
                         old_element.parentNode.replaceChild(new_element, old_element);
+                        let div = document.createElement("div")
+                        div.id = "REMOVED"
+
                         new_element.addEventListener('click', e => {
-                            let div = document.createElement("div")
                             div.innerHTML = `
                             <div class="modal modal_submit-form-error default-animation enter-done"><div class="modal__container" data-qa-modal="true"><svg class="modal__close-icon icon"><use xlink:href="#x"></use></svg><h2 class="modal__title">
-                            Our manager will connect you via email
-</h2><div class="modal__buttons"><button class="button modal__button modal__button button button_primary button_size_md">Ok</button></div></div></div>`
+                            Our manager will contact you by email
+</h2><div class="modal__buttons"><button onClick="function test(){ document.getElementById('REMOVED').innerHTML = ''
+                            isFin = false; } test();" class="button modal__button modal__button button button_primary button_size_md">Ok</button></div></div></div>`
                             document.querySelector('.ui').append(div)
                         })
                     }

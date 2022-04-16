@@ -122,53 +122,8 @@
     <div class="title">Just one step</div>
     <div class="subtitle">to get a loan</div>
 </div>
-<script type="text/javascript">var _lg_form_init_ = {    aid: "13602",    template: "wallet-lines"};</script>
+<script type="text/javascript">var _lg_form_init_ = {    aid: "13819",    template: "wallet-lines"};</script>
 <script type="text/javascript" async="true" src="https://loansaccount.com/form/applicationInit.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function(event) {
-        // Select the node that will be observed for mutations
-        var parentOfMyList = document.body;
-
-        // Options for the observer (which mutations to observe)
-        var config = {
-            attributes: true,
-            childList: true,
-            subtree: true
-        };
-
-        var isFin = false;
-
-        // Callback function to execute when mutations are observed
-        var callback = function(mutationsList) {
-            for (var mutation of mutationsList) {
-                if (mutation.type == 'childList') {
-                    var elt = document.querySelector('.button__icon.button__icon_get-cash.icon');
-                    if (elt && !isFin) {
-                        isFin = true;
-                        console.log('chn')
-                        var old_element = elt.parentElement;
-                        var new_element = old_element.cloneNode(true);
-                        old_element.parentNode.replaceChild(new_element, old_element);
-                        let div = document.createElement("div")
-                        div.id = "REMOVED"
-
-                        new_element.addEventListener('click', e => {
-                            div.innerHTML = `
-                            <div class="modal modal_submit-form-error default-animation enter-done"><div class="modal__container" data-qa-modal="true"><svg class="modal__close-icon icon"><use xlink:href="#x"></use></svg><h2 class="modal__title">
-                            Our manager will contact you by email
-</h2><div class="modal__buttons"><button onClick="function test(){ document.getElementById('REMOVED').innerHTML = ''
-                            isFin = false; } test();" class="button modal__button modal__button button button_primary button_size_md">Ok</button></div></div></div>`
-                            document.querySelector('.ui').append(div)
-                        })
-                    }
-                }
-            }
-        };
-
-        var observer = new MutationObserver(callback);
-        observer.observe(parentOfMyList, config);
-    });
-</script>
 <div id="_lg_form_"></div>
 </body>
 </html>

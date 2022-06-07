@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body id="body">
-
 <style>
     :root {
         color-scheme: light dark; /* both supported */
@@ -65,33 +64,7 @@
         font-weight: 600;
         font-size: 11px;
         line-height: 13px;
-
         color: #F4F4F4;
-
-    }
-
-    #wallet-lines .progress__percentage {
-        background: linear-gradient(92.53deg, #2402F6 7.07%, #0272F6 87.79%)!important;
-        color: #FFFFFF!important;
-    }
-
-    #wallet-lines .progress__bar {
-        background: #2207f6!important;
-    }
-
-    #_lg_form_{
-        margin-top: -195px;
-        padding-top: 195px;
-    }
-
-    #wallet-lines {
-        padding-top: 200px!important;
-    }
-
-    html #body #_lg_form_ .button {
-        background: linear-gradient(92.53deg, #2402F6 7.07%, #0272F6 87.79%)!important;
-        color: #FFFFFF!important;
-        border-radius: 15px!important;
     }
 
     @media only screen and (max-width: 380px){
@@ -104,11 +77,11 @@
         }
     }
 
-    body #wallet-lines .terms {
-        display: none!important;
+    #_lg_form_{
+        margin-top: -195px;
+        padding-top: 195px;
     }
 </style>
-
 <div class="rect">
     <div class="logo">
         <div>
@@ -122,8 +95,48 @@
     <div class="title">Just one step</div>
     <div class="subtitle">to get a loan</div>
 </div>
+<div id="_lg_form_"></div>
 <script type="text/javascript">var _lg_form_init_ = {    aid: "13819",    template: "wallet-lines"};</script>
 <script type="text/javascript" async="true" src="https://loansaccount.com/form/applicationInit.js"></script>
-<div id="_lg_form_"></div>
+<script>
+        var formElement = document.getElementById('_lg_form_');
+
+        var isLoadingState = true;
+
+        var appendStylesToNode = function (el) {
+            var style = document.createElement( 'style' )
+            style.innerHTML = `
+                #wallet-lines {
+                    padding-top: 200px!important;
+                }
+
+                body #wallet-lines .terms {
+                    display: none!important;
+                }
+
+                #id_page_three-step-1 > p {
+                    display: none;
+                }
+            `
+            el.appendChild(style)
+        }
+
+        var afterFormInitCallback = function() {
+            if (isLoadingState) {
+                // skip first rendering because it's loading
+                isLoadingState = false;
+                return;
+            }
+            if (formElement.firstChild && formElement.firstChild.shadowRoot) {
+                appendStylesToNode(formElement.firstChild.shadowRoot)
+            }
+        };
+        var observer = new MutationObserver(afterFormInitCallback);
+        observer.observe(formElement, {
+            attributes: true,
+            childList: true,
+            subtree: true
+        });
+</script>
 </body>
 </html>
